@@ -1,63 +1,12 @@
-# DoytoQuery——第二代ORM框架的Java实现
+# DoytoQuery
 
 [![License](https://img.shields.io/:license-apache-brightgreen.svg)](https://www.apache.org/licenses/LICENSE-2.0.html) [![Maven Central](https://maven-badges.herokuapp.com/maven-central/win.doyto/doyto-query/badge.svg)](https://maven-badges.herokuapp.com/maven-central/win.doyto/doyto-query/) [![Sonar Stats](https://sonarcloud.io/api/project_badges/measure?project=win.doyto%3Adoyto-query&metric=alert_status)](https://sonarcloud.io/dashboard?id=win.doyto%3Adoyto-query) [![Code Lines](https://sonarcloud.io/api/project_badges/measure?project=win.doyto%3Adoyto-query&metric=ncloc)](https://sonarcloud.io/component_measures?id=win.doyto%3Adoyto-query&metric=ncloc) [![Coverage Status](https://sonarcloud.io/api/project_badges/measure?project=win.doyto%3Adoyto-query&metric=coverage)](https://sonarcloud.io/component_measures?id=win.doyto%3Adoyto-query&metric=coverage)
 
-## 项目介绍
+DoytoQuery是一个基于对象查询映射（Object Query Mapping，OQM）技术实现的一款Java版数据库访问框架。其核心思想是通过一组对象生成查询语句：
+- **查询对象（Query Object）** 用于动态构建WHERE子句，通过字段构建查询条件，并根据字段的赋值动态组合查询条件。
+- **实体对象（Entity Object）** 用于映射单表查询语句中的表名和列名。实体对象的实例用于映射目标表的行数据。
+- **分页查询对象（PageQuery）** 定义了分页和排序字段，用于接收前端传递的参数并生成相应的分页和排序子句。作为所有查询对象的基类，它为所有查询接口提供了分页和排序功能。
+- **视图对象（View Object）** 用于映射包含查询对象的复杂查询语句。由于复杂查询语句通常包含聚合列和多表关联，因此我们需要一种新的对象类型来替代实体对象。
+- **Having对象** 是一种特殊的查询对象，用于映射HAVING子句，继承自基础的查询对象。查询对象中定义的字段用于构建 WHERE 子句的条件，而 Having 条件对象中定义的字段则用于构建 HAVING 子句的条件。
 
-DoytoQuery是第二代ORM框架的一个Java实现。
-
-## 第二代ORM框架概述
-
-**核心理念：将SQL语句映射为对象进行数据库访问操作**
-
-**1. 一条SQL语句最多映射为三个对象**
-
-1. WHERE语句映射为Query对象
-   * 每条查询语句都包含了隐式分页和排序
-   * 查询字段可以通过以下三种方式映射为条件语句
-     * 字段后缀映射
-     * 嵌套查询注解
-     * 自定义查询注解
-2. SELECT语句映射为Entity对象
-3. 水平分表的动态表名由IdWrapper对象确定
-
-**2. SQL访问语句可以归为三类**
-
-1. 单表增删查改
-   * 基于上述三个对象映射单表的增删查改语句
-2. 中间表操作
-   * 表结构类似，变量部分有3个：表名，左表外键列名，右表外键列名
-   * 只有增删查操作，没有修改操作
-   * 根据上述变量可以生成对应的增删查语句
-3. 聚合/连接查询
-   * 只有查询操作
-   * 复用Query对象生成查询语句
-   * Entity对象的字段的注解用于拼接SELECT语句
-   * 在Entity对象上使用注解拼接JOIN和GROUP BY语句
-
-## 功能列表：
-
-### DataAccess层
-
-* 单表增删查改操作
-* 分表增删查改操作
-* 数据库方言扩展
-* 用于TDD的一个Mock实现
-
-### Service层
-
-* 增删查改接口
-* 二级缓存
-* UserId注入
-* EntityAspect扩展
-
-### Controller层
-
-* RestApi
-* 错误码
-* 异常断言
-* 异常处理
-* 响应封装
-* Request/Entity/Response转换
-* 分组校验
 

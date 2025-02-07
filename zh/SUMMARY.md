@@ -1,25 +1,39 @@
 # Table of contents
 
-* [DoytoQuery](README.md)
-* [入门教程](quickstart)
+* [项目介绍](README.md)
+* [快速上手](quickstart.md)
 
-## 教程 <a id="tutorial"></a>
+## 基础用法 <a href="#basic" id="basic"></a>
 
-* [中间表操作](tutorial/associative-sql.md)
-* [连接表查询](tutorial/join-query.md)
-* [分表增删查改](tutorial/crud-for-sharding-table.md)
+* [增删查改接口](basic/crud.md)
+* [中间表访问接口](basic/associative-sql.md)
+* [数据库方言](basic/dialect.md)
+* [分表增删查改](basic/crud-for-sharding-table.md)
+* [打印SQL日志](basic/print-sql-logs.md)
 
-## 技术手册 <a id="manual"></a>
+## 实体对象映射 <a href="#entity-mapping" id="entity-mapping"></a>
 
-* [核心组件](manual/core-components.md)
-* [查询对象字段后缀汇总](manual/suffix-summary.md)
-* [嵌套查询](manual/nested-query.md)
-* [通用查询注解](manual/universal-query-annotation.md)
-* [数据库方言](manual/database-dialect.md)
-* [输出SQL日志](manual/print-sql-logs.md)
-* [二级缓存](manual/second-level-cache.md)
+* [实体对象](entity-mapping/entity-object.md)
+* [关联实体](entity-mapping/related-entities.md)
 
-## Web
+## 查询对象映射 <a href="#query-mapping" id="query-mapping"></a>
 
-* [@JsonBody](web/jsonbody.md)
-* [异常断言](web/exception-assertion.md)
+* [查询对象构建](query-mapping/README.md)
+* [谓词后缀字段](query-mapping/predicate-suffix-field.md)
+* [逻辑后缀字段](query-mapping/logic-suffix-field.md)
+* [子查询字段](query-mapping/subquery-field.md)
+* [ER关系字段](query-mapping/er-query-field.md)
+* [自定义字段](query-mapping/custom-condition-field.md)
+* [分页对象](query-mapping/page-query.md)
+
+## 聚合查询
+
+* [视图对象](aggregate-query/view-object.md)
+* [Having对象](aggregate-query/having.md)
+* [外连接](aggregate-query/outer-join.md)
+
+
+## 相关资源 <a href="#related-resources" id="related-resources"></a>
+
+* [文章](related-resources/articles/README.md)
+  * [从ORM到OQM：一种基于对象的SQL语句构造方案](https://blog.doyto.win/post/from-orm-to-oqm/)
